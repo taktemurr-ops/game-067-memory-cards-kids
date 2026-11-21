@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -106,6 +107,7 @@ class _MemoryViewState extends State<MemoryView> with RoundClock {
   int _pairsTotal = 0;
   int _boards = 0;
   bool _peeking = false;
+  Timer? _peekTimer;
   bool _busy = false;
   bool _ended = false;
   Set<int> _flash = {};
@@ -137,13 +139,15 @@ class _MemoryViewState extends State<MemoryView> with RoundClock {
     if (level.peek <= 0) return;
     _peeking = true;
     final my = level;
-    Future<void>.delayed(Duration(seconds: level.peek), () {
+    _peekTimer?.cancel();
+    _peekTimer = Timer(Duration(seconds: level.peek), () {
       if (mounted && identical(my, level)) setState(() => _peeking = false);
     });
   }
 
   @override
   void dispose() {
+    _peekTimer?.cancel();
     stopClock();
     super.dispose();
   }
