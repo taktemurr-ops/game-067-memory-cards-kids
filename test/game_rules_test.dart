@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:game_067_memory_cards_kids/core/level_plan.dart';
-import 'package:game_067_memory_cards_kids/core/rng.dart';
+import 'package:studio_core/core/level_plan.dart';
+import 'package:studio_core/core/rng.dart';
 import 'package:game_067_memory_cards_kids/game/memory_engine.dart';
 import 'package:game_067_memory_cards_kids/game/rules.dart';
 
